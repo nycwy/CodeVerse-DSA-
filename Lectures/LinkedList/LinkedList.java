@@ -11,6 +11,7 @@ public class LinkedList {
 
     public static Node head;
     public static Node tail;
+    public static int size;
 
     public void addFirst(int data) {
         Node newNode = new Node(data);
@@ -34,15 +35,16 @@ public class LinkedList {
 
     public void addMiddle(int idx, int data) {
         Node newNode = new Node(data);
-        if (head == null) {
-            head = tail = newNode;
-            return;
-        }
         Node temp = head;
-        if (temp.next == idx) {
-            temp.next = newNode;
-            newNode.next = temp.next.next;
+        int i = 0;
+        
+        while (i < idx - 1) {
+            temp = temp.next;
+            i++;
         }
+
+        newNode.next = temp.next;
+        temp.next = newNode;
     }
 
     public void printLL() {
@@ -66,7 +68,7 @@ public class LinkedList {
         ll.addLast(6);
         ll.addFirst(1);
         ll.addMiddle(1, 2);
-
+        ll.addMiddle(6, 7);
         ll.printLL();
     }
 }
